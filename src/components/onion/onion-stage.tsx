@@ -47,7 +47,7 @@ function PlateNameLabel({
         }}
         maxLength={4}
         style={{ bottom: PLATE_BOTTOM_PX }}
-        className="absolute left-1/2 w-20 -translate-x-1/2 translate-y-1/2 rounded bg-white/70 text-center font-jua text-sm text-[#6b4a34] outline-none"
+        className="absolute left-1/2 w-20 -translate-x-1/2 translate-y-1/2 scale-[0.875] rounded bg-white/70 text-center font-jua text-base text-[#6b4a34] outline-none"
       />
     );
   }
