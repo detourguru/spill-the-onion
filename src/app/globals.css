@@ -74,6 +74,7 @@
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-jua: var(--font-jua);
 }
 
 @layer base {
@@ -82,5 +83,86 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@theme {
+  --animate-onion-fly: onion-fly 900ms ease-out forwards;
+  --animate-onion-punch: onion-punch 550ms ease-in-out;
+  --animate-onion-burst: onion-burst-flash 550ms ease-out;
+  --animate-onion-reply: onion-reply-pop 2400ms ease-out forwards;
+}
+
+@keyframes onion-fly {
+  0% {
+    transform: translateY(0) scale(0.85, 0.55);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(-38vh) scale(1.35, 0.88);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-62vh) scale(1.8, 1.17);
+    opacity: 0;
+  }
+}
+
+@keyframes onion-punch {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  30% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  60% {
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes onion-burst-flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes onion-reply-pop {
+  0% {
+    transform: translate(-50%, 8px) scale(0.7);
+    opacity: 0;
+  }
+  18% {
+    transform: translate(-50%, 0) scale(1.05);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  82% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -6px) scale(0.95);
+    opacity: 0;
   }
 }
