@@ -66,6 +66,16 @@ export function useOnionVent() {
     window.localStorage.setItem(NAME_KEY, trimmed);
   }, []);
 
+  const reset = useCallback(() => {
+    const d = todayKey();
+    window.localStorage.removeItem(DAY_PREFIX + d);
+    window.localStorage.removeItem(NAME_KEY);
+    setDay({ date: d, count: 0 });
+    setNameState(DEFAULT_NAME);
+    setBurstSignal(0);
+    setReply(null);
+  }, []);
+
   const addVent = useCallback(() => {
     const nextTier = getTier(dayRef.current.count + 1);
     const upcomingBurst = burstSignalRef.current + 1;
@@ -94,5 +104,6 @@ export function useOnionVent() {
     addVent,
     burstSignal,
     reply,
+    reset,
   };
 }
