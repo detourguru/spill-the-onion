@@ -47,7 +47,7 @@ function PlateNameLabel({
         }}
         maxLength={4}
         style={{ bottom: `${bottomPercent}%` }}
-        className="absolute left-1/2 w-[23cqw] -translate-x-1/2 translate-y-1/2 rounded bg-white/70 text-center font-jua text-[4cqw] text-[#6b4a34] outline-none"
+        className="font-jua absolute left-1/2 w-[4.5em] -translate-x-1/2 translate-y-1/2 rounded bg-white/70 text-center text-[max(16px,4cqw)] text-[#6b4a34] outline-none"
       />
     );
   }
@@ -63,11 +63,9 @@ function PlateNameLabel({
         setEditing(true);
       }}
       style={{ bottom: `${bottomPercent}%` }}
-      className="absolute left-1/2 flex max-w-[80%] -translate-x-1/2 translate-y-1/2 justify-center font-jua text-[4cqw] text-[#6b4a34]"
+      className="font-jua absolute left-1/2 flex max-w-[80%] -translate-x-1/2 translate-y-1/2 justify-center text-[4cqw] text-[#6b4a34]"
     >
       {chars.map((char, i) => (
-        // Pot's corner tag dips toward its fold, so letters tilt away from
-        // the label's center to sit flush with that V-shaped seam.
         <span key={i} style={{ transform: `rotate(${(mid - i) * 3}deg)` }}>
           {char}
         </span>
@@ -113,13 +111,13 @@ export function OnionStage({
         {reply && burstSignal > 0 && (
           <div
             key={`reply-${burstSignal}`}
-            className="animate-onion-reply pointer-events-none absolute bottom-full left-1/2 mb-2 max-w-55"
+            className="animate-onion-reply pointer-events-none absolute bottom-full left-1/2 mb-2 w-max max-w-55"
           >
-            <div className="relative rounded-2xl bg-white px-3 py-2 text-center font-jua text-sm text-neutral-800 shadow-md">
+            <div className="font-jua relative rounded-2xl bg-white px-3 py-2 text-center text-sm text-neutral-800 shadow-md">
               {reply}
               <span
                 aria-hidden
-                className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-8 border-x-transparent border-t-8 border-t-white"
+                className="absolute top-full left-1/2 h-0 w-0 -translate-x-1/2 border-x-8 border-t-8 border-x-transparent border-t-white"
               />
             </div>
           </div>
