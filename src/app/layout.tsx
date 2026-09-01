@@ -25,13 +25,6 @@ const siteName = "Spill the Onion";
 const siteDescription =
   "오늘 있었던 일을 양파에게 마구 쏟아내면 분노를 먹은 양파가 무럭무럭 자라는 감정 배출 서비스";
 
-const ogImage = {
-  url: "/og-image.png",
-  width: 1200,
-  height: 630,
-  alt: siteDescription,
-};
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteName,
@@ -47,13 +40,11 @@ export const metadata: Metadata = {
     siteName: siteName,
     locale: "ko_KR",
     type: "website",
-    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    images: [ogImage.url],
   },
 };
 

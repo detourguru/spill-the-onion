@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { DEFAULT_ONION_NAME } from "@/lib/onion-config";
 import { getReaction } from "@/lib/onion-reactions";
 import { getTier } from "@/lib/onion-tiers";
 
@@ -12,7 +13,7 @@ type DayState = {
 
 const DAY_PREFIX = "onion-vent:day:";
 const NAME_KEY = "onion-vent:name";
-const DEFAULT_NAME = "비난양파";
+const DEFAULT_NAME = DEFAULT_ONION_NAME;
 
 function todayKey(d = new Date()) {
   const y = d.getFullYear();
@@ -85,6 +86,36 @@ export function useOnionVent() {
     setReply(getReaction(nextTier));
   }, []);
 
+  const addVoiceVent = useCallback(async (transcript: string) => {
+    const nextCount = dayRef.current.count + 1;
+    const nextTier = getTier(nextCount);
+
+    let replyText: string;
+    let fallback = false;
+    try {
+      const res = await fetch("/api/onion-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: transcript, count: nextCount }),
+      });
+      if (!res.ok) throw new Error("onion-chat request failed");
+      const data = (await res.json()) as { reply?: string; fallback?: boolean };
+      if (!data.reply) throw new Error("empty reply");
+      replyText = data.reply;
+      fallback = Boolean(data.fallback);
+    } catch {
+      replyText = getReaction(nextTier);
+      fallback = true;
+    }
+
+    const upcomingBurst = burstSignalRef.current + 1;
+    setDay((prev) => ({ ...prev, count: prev.count + 1 }));
+    setBurstSignal(upcomingBurst);
+    setReply(replyText);
+
+    return { reply: replyText, fallback };
+  }, []);
+
   useEffect(() => {
     const check = () => {
       const d = todayKey();
@@ -102,6 +133,7 @@ export function useOnionVent() {
     name,
     setName,
     addVent,
+    addVoiceVent,
     burstSignal,
     reply,
     reset,
