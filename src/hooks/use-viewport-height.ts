@@ -8,16 +8,24 @@ export function useViewportHeight() {
     const viewport = window.visualViewport;
     if (!viewport) return;
 
-    const setHeight = () => {
+    const setSize = () => {
       document.documentElement.style.setProperty(
         "--app-height",
         `${viewport.height}px`,
       );
+      document.documentElement.style.setProperty(
+        "--app-offset-top",
+        `${viewport.offsetTop}px`,
+      );
     };
 
-    setHeight();
-    viewport.addEventListener("resize", setHeight);
+    setSize();
+    viewport.addEventListener("resize", setSize);
+    viewport.addEventListener("scroll", setSize);
 
-    return () => viewport.removeEventListener("resize", setHeight);
+    return () => {
+      viewport.removeEventListener("resize", setSize);
+      viewport.removeEventListener("scroll", setSize);
+    };
   }, []);
 }

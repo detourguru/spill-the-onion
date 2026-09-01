@@ -111,7 +111,7 @@ export function OnionStage({
         {reply && burstSignal > 0 && (
           <div
             key={`reply-${burstSignal}`}
-            className="animate-onion-reply pointer-events-none absolute bottom-full left-1/2 mb-2 w-max max-w-55"
+            className="animate-onion-reply pointer-events-none absolute bottom-full left-1/2 -mb-3 w-max max-w-55"
           >
             <div className="font-jua relative rounded-2xl bg-white px-3 py-2 text-center text-sm text-neutral-800 shadow-md">
               {reply}

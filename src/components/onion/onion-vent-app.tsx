@@ -23,8 +23,11 @@ export function OnionVentApp() {
 
   return (
     <main
-      className="mx-auto flex w-full max-w-md flex-col items-center gap-4 bg-[#EEF0FB] p-4 sm:p-6"
-      style={{ height: "var(--app-height, 100dvh)" }}
+      className="fixed inset-x-0 mx-auto flex w-full max-w-md flex-col items-center gap-4 bg-[#EEF0FB] p-4 sm:p-6"
+      style={{
+        top: "var(--app-offset-top, 0px)",
+        height: "var(--app-height, 100dvh)",
+      }}
     >
       <section className="relative flex w-full min-h-0 flex-1 justify-center rounded-4xl bg-[#FF6FA9] px-6 py-9 shadow-[0_6px_0_0_rgba(0,0,0,0.08)]">
         <button
