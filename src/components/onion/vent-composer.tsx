@@ -38,7 +38,7 @@ export function VentComposer({
       MAX_FONT_SIZE,
       BASE_FONT_SIZE + count * FONT_SIZE_STEP,
     );
-    const id = crypto.randomUUID();
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     setFlying((prev) => [...prev, { id, text, size }]);
   }
 
