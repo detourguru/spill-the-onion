@@ -23,7 +23,7 @@ const jua = Jua({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const siteName = "Spill the Onion";
 const siteDescription =
-  "오늘 있었던 빡치는 일을 양파에게 마구 뒷담화하면, 뒷담을 할수록 양파가 무럭무럭 자라는 감정 배출 서비스";
+  "오늘 있었던 일을 양파에게 마구 쏟아내면 분노를 먹은 양파가 무럭무럭 자라는 감정 배출 서비스";
 
 const ogImage = {
   url: "/og-image.png",

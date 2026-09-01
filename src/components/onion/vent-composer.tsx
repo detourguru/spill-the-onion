@@ -73,7 +73,7 @@ export function VentComposer({
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           rows={1}
-          placeholder="오늘 있었던 빡치는 일을 적어보세요..."
+          placeholder="양파에게 무엇이든 말해보세요..."
           className={cn(
             "h-11 flex-1 resize-none scrollbar-hide rounded-full border border-neutral-200 bg-white px-4 py-2.5 text-base leading-normal outline-none",
             "focus-visible:border-neutral-400",
