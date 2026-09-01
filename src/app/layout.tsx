@@ -57,8 +57,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Lets the layout viewport (and `dvh` units) shrink with the on-screen
-// keyboard instead of staying overlaid, so the card can respond to it.
 export const viewport: Viewport = {
   interactiveWidget: "resizes-content",
 };
@@ -67,9 +65,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} ${jua.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${jua.variable} h-full overflow-hidden antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex h-full flex-col overflow-hidden overscroll-none">
         {children}
         <Analytics />
       </body>
