@@ -23,7 +23,7 @@ export function VentComposer({
   onVoiceSend,
 }: {
   count: number;
-  onSend: () => void;
+  onSend: () => string;
   onVoiceSend: (transcript: string) => Promise<{ reply: string }>;
 }) {
   const [value, setValue] = useState("");
@@ -58,13 +58,15 @@ export function VentComposer({
     const text = value.trim();
     if (!text) return;
 
-    onSend();
+    const replyText = onSend();
     setValue("");
     textareaRef.current?.focus();
     pushFlyingBubble(text);
+    speak(replyText);
   }
 
   const speak = useCallback((text: string) => {
+    if (!("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ko-KR";

@@ -80,10 +80,13 @@ export function useOnionVent() {
   const addVent = useCallback(() => {
     const nextTier = getTier(dayRef.current.count + 1);
     const upcomingBurst = burstSignalRef.current + 1;
+    const replyText = getReaction(nextTier);
 
     setDay((prev) => ({ ...prev, count: prev.count + 1 }));
     setBurstSignal(upcomingBurst);
-    setReply(getReaction(nextTier));
+    setReply(replyText);
+
+    return replyText;
   }, []);
 
   const addVoiceVent = useCallback(async (transcript: string) => {
