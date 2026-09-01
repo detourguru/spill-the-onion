@@ -55,6 +55,7 @@ const REACTIONS: Record<string, string[]> = {
     "양파도 이제 지쳤다",
     "계속 까. 내가 소화시킬게",
     "내가 왜 너보다 더 화났지?",
+    "양파만도 못한놈이네",
   ],
 
   legend: [
@@ -78,4 +79,10 @@ export function getReaction(tier: Tier): string {
   const lines = REACTIONS[tier.key] ?? REACTIONS.sprout;
 
   return lines[Math.floor(Math.random() * lines.length)];
+}
+
+export function getToneExamples(tierKey: string, count = 4): string[] {
+  const lines = REACTIONS[tierKey] ?? REACTIONS.sprout;
+
+  return [...lines].sort(() => Math.random() - 0.5).slice(0, count);
 }
